@@ -1,0 +1,172 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass=UserRepository::class)
+ */
+class User
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $points;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Bien::class, mappedBy="propriétaire")
+     */
+    private $biens_user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Pret::class, mappedBy="user")
+     */
+    private $pret_user;
+
+    public function __construct()
+    {
+        $this->biens_user = new ArrayCollection();
+        $this->pret_user = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getPoints(): ?int
+    {
+        return $this->points;
+    }
+
+    public function setPoints(int $points): self
+    {
+        $this->points = $points;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bien[]
+     */
+    public function getBiensUser(): Collection
+    {
+        return $this->biens_user;
+    }
+
+    public function addBiensUser(Bien $biensUser): self
+    {
+        if (!$this->biens_user->contains($biensUser)) {
+            $this->biens_user[] = $biensUser;
+            $biensUser->setPropriétaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBiensUser(Bien $biensUser): self
+    {
+        if ($this->biens_user->contains($biensUser)) {
+            $this->biens_user->removeElement($biensUser);
+            // set the owning side to null (unless already changed)
+            if ($biensUser->getPropriétaire() === $this) {
+                $biensUser->setPropriétaire(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pret[]
+     */
+    public function getPretUser(): Collection
+    {
+        return $this->pret_user;
+    }
+
+    public function addPretUser(Pret $pretUser): self
+    {
+        if (!$this->pret_user->contains($pretUser)) {
+            $this->pret_user[] = $pretUser;
+            $pretUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePretUser(Pret $pretUser): self
+    {
+        if ($this->pret_user->contains($pretUser)) {
+            $this->pret_user->removeElement($pretUser);
+            // set the owning side to null (unless already changed)
+            if ($pretUser->getUser() === $this) {
+                $pretUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+}
