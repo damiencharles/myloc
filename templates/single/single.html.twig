@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}myLoc {{bien.nomBien}}{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row text-center d-flex justify-content-center align-items-center my-4">
+                    
+        <div class='col-12 my-3'>
+        <h2>{{bien.nomBien}}</h2>
+        <p >{{bien.categorie}}</p>
+        </div>
+
+        <div class="col-6 d-flex justify-content-center align-self-start ">
+            <img src={{bien.image}} class="img-fluid mb-5" alt="">
+        </div>
+
+        <div class="col-6 d-flex justify-content-center align-items-center flex-column">
+        <p class=" border border-warning p-2">{{bien.description}}</p>
+
+        <a href="#"><button type="button" class="btn btn-outline-warning my-3">Réserver</button></a>
+        </div>
+
+        <div class='col-12 my-3'>
+        <a href="/"><button type="button" class="btn btn-warning my-2">Retour</button></a>
+        </div>
+        
+    </div>
+
+</div>
+{% endblock %}
