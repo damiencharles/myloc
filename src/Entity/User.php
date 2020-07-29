@@ -67,6 +67,12 @@ class User implements UserInterface
         return $this->pseudo;
     }
 
+    public function getUsername(): ?string
+    {
+        return $this->pseudo;
+    }
+
+
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
