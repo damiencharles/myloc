@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Bien;
 use App\Entity\Categorie;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategorieController extends AbstractController
 {
     /**
-     * @Route("/categorie/{id}", name="categorie")
+     * @Route("categorie/{id}", name="categorie")
      */
     public function show(int $id)
     {
@@ -17,9 +18,12 @@ class CategorieController extends AbstractController
         $categorie = $em->getRepository(Categorie::class)->find($id);
         $biens = $categorie->getBiensCategorie();
         
+
         return $this->render('categorie/categorie.html.twig', [
             'biens' => $biens,
-            'categorie' => $categorie
+            'categorie' => $categorie,
+            
         ]);
     }
+
 }
