@@ -5,12 +5,12 @@
 {% block body %}
 <div class="container">
 <h2 class="text-center"> {{categorie}} : Annonces disponibles</h2>
-<div class="row d-flex justify-content-center">
+<div class="row">
 
 {% for bien in biens %}
 <div class="col-4">
 {{bien.nomBien}}
-<div><img src="{{bien.image}}" alt="" class="img-fluid w-50"> </div>
+<div><img src="/uploads/{{bien.image}}" alt="" class="img-fluid"> </div>
 {{bien.categorie}}
 <a href="/{{ bien.id }}"> En savoir plus</a>
 </div>

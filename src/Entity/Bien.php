@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\BienRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM;use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass=BienRepository::class)
+ * @Vich\Uploadable
  */
 class Bien
 {
@@ -33,6 +36,12 @@ class Bien
     private $image;
 
     /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="biens_categorie")
      */
     private $categorie;
@@ -40,7 +49,7 @@ class Bien
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="biens_user")
      */
-    private $propriétaire;
+    private $proprietaire;
 
     /**
      * @ORM\OneToOne(targetEntity=Pret::class, mappedBy="bien_pret", cascade={"persist", "remove"})
@@ -81,6 +90,11 @@ class Bien
         return $this->image;
     }
 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
     public function setImage(string $image): self
     {
         $this->image = $image;
@@ -100,14 +114,14 @@ class Bien
         return $this;
     }
 
-    public function getPropriétaire(): ?User
+    public function getproprietaire(): ?User
     {
-        return $this->propriétaire;
+        return $this->proprietaire;
     }
 
-    public function setPropriétaire(?User $propriétaire): self
+    public function setproprietaire(?User $proprietaire): self
     {
-        $this->propriétaire = $propriétaire;
+        $this->proprietaire = $proprietaire;
 
         return $this;
     }
@@ -123,13 +137,29 @@ class Bien
 
         // set (or unset) the owning side of the relation if necessary
         $newBien_pret = null === $pret_bien ? null : $this;
-        if ($pret_bien->getBienPret() !== $newBien_pret) {
+        if ($pret_bien->getBienPret() !== $newBien_pret); {
             $pret_bien->setBienPret($newBien_pret);
         }
 
         return $this;
     }
 
+     public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function __toString()
+    {
+        return $this->nom_bien;
+    }
    
 }
- 

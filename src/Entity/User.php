@@ -7,10 +7,16 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;  
 
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ *  fields={"email"},
+ *  message="cet email est déjà utilisé"
+ * )s
  */
 class User implements UserInterface
 {
@@ -28,6 +34,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
@@ -42,7 +49,7 @@ class User implements UserInterface
     private $points;
 
     /**
-     * @ORM\OneToMany(targetEntity=Bien::class, mappedBy="propriétaire")
+     * @ORM\OneToMany(targetEntity=Bien::class, mappedBy="proprietaire")
      */
     private $biens_user;
 
@@ -128,7 +135,7 @@ class User implements UserInterface
     {
         if (!$this->biens_user->contains($biensUser)) {
             $this->biens_user[] = $biensUser;
-            $biensUser->setPropriétaire($this);
+            $biensUser->setProprietaire($this);
         }
 
         return $this;
@@ -139,8 +146,8 @@ class User implements UserInterface
         if ($this->biens_user->contains($biensUser)) {
             $this->biens_user->removeElement($biensUser);
             // set the owning side to null (unless already changed)
-            if ($biensUser->getPropriétaire() === $this) {
-                $biensUser->setPropriétaire(null);
+            if ($biensUser->getProprietaire() === $this) {
+                $biensUser->setProprietaire(null);
             }
         }
 
@@ -195,6 +202,6 @@ class User implements UserInterface
 
     public function __toString()
     {
-        return $this->username;
+        return $this->pseudo;
     }
 }

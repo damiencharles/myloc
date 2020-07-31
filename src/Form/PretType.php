@@ -2,29 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\User;
+use App\Entity\Pret;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class RegistrationType extends AbstractType
+class PretType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo')
-            ->add('email')
-            ->add('password', PasswordType::class)
-            ->add("S'inscrire", SubmitType::class)
+            ->add('bien_pret')
+            ->add('user')
+            ->add('date_debut')
+            ->add('date_fin')
+            ->add('points_pret')
+            ->add('Reserver ce bien', SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Pret::class,
         ]);
     }
 }

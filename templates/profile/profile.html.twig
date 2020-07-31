@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre profile{% endblock %}
+
+{% block body %}
+{{user.pseudo}}
+{{user.email}}
+{{user.points}}
+
+{% for bien in biens %}
+{{bien.nomBien}}
+{% endfor %}
+<br>
+
+
+
+{% endblock %}
