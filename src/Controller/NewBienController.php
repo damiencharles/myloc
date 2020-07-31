@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class NewBienController extends AbstractController
 {
     /**
-     * @Route("/admin/ajout", name="new_produit")
+     * @Route("profile/ajout", name="new_produit")
      */
     public function new(Request $request)
     {

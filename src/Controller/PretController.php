@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Bien;
 use App\Entity\Pret;
+use App\Entity\User;
 use App\Form\PretType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,16 +13,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PretController extends AbstractController
 {
     /**
-     * @Route("/bien/{id}/pret", name="pret")
+     * @Route("profile/bien/{id}/pret", name="pret")
      */
     public function new($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+
         $user = $this->getUser();
         $newPret = new Pret();
-        $newPret->setUser($user);
+        
+
         $bien = $em->getRepository(Bien::class)->find($id);
+        $proprio = $bien->getproprietaire();
+        //dump($proprio);
+
         $newPret->setBienPret($bien);
+
+        $date = $this->date = new \DateTime('now');
+        $newPret->setDateDebut($date);
+        $newPret->setDateFin($date);
+
+        $pointsResa = '50';
+        
+
         
         $form = $this->createForm(PretType::class, $newPret);
         
@@ -30,6 +44,10 @@ class PretController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
         
         $newPret = $form->getData();
+        
+        $newPret->setPointsPret($pointsResa);
+        $proprioPoints = $proprio->getPoints();  
+        $proprio->setPoints($proprioPoints += $pointsResa); 
     
         $em = $this->getDoctrine()->getManager();
         $em->persist($newPret);
