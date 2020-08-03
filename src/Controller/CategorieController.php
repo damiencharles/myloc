@@ -17,11 +17,12 @@ class CategorieController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $categorie = $em->getRepository(Categorie::class)->find($id);
         $biens = $categorie->getBiensCategorie();
-        
+        $user = $this->getUser();
 
         return $this->render('categorie/categorie.html.twig', [
             'biens' => $biens,
             'categorie' => $categorie,
+            'user' => $user
             
         ]);
     }

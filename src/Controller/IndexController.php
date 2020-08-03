@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Bien;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IndexController extends AbstractController
 {
@@ -15,9 +16,11 @@ class IndexController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $biens = $em->getRepository(Bien ::class)->findAll();
+        $user = $this->getUser();
 
         return $this->render('index/index.html.twig', [
             'biens' => $biens,
+            'user' => $user
         ]);
     }
 }

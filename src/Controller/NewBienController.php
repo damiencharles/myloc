@@ -36,6 +36,7 @@ class NewBienController extends AbstractController
 
         return $this->render('new_bien/newBien.html.twig', [
             'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 }

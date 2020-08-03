@@ -17,10 +17,12 @@ class SingleController extends AbstractController
         
         $em = $this->getDoctrine()->getManager();
         $bien = $em->getRepository(Bien::class)->find($id);
+        $user = $this->getUser();
 
 
         return $this->render('single/single.html.twig', [
             'bien' => $bien,
+            'user' => $user
     
         ]);
     }

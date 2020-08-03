@@ -57,7 +57,8 @@ class PretController extends AbstractController
 
         return $this->render('pret/pret.html.twig', [
             'form' => $form->createView(),
-            'bien' => $bien
+            'bien' => $bien,
+            'user' => $user
         ]);
     }
 

@@ -4,20 +4,22 @@
         <meta charset="UTF-8">
         <title>{% block title %}Bienvenus sur myLoc{% endblock %}</title>
         {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link href="{{ asset('assets/style.css') }}" rel="stylesheet" />        
         {% endblock %}
     </head>
     <body>
     <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="/"><img src="{{ asset('assets//img/logo.png') }}" class="w-50" alt="myloc"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-            <ul class="navbar-nav text-right">
-            <li class="nav-item active">
+            <nav class="navbar navbar-expand-lg">
+                    <a href="/" class="navbar-brand col-6">
+                    <img src="{{ asset('assets//img/logo2.png') }}" class="w-50 logo" alt="myloc"></a>                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"><i class="fas fa-water"></i></span>
+                    </button>
+                    <div class="collapse navbar-collapse col-6" id="navbarLinks">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item active">
                 <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
@@ -39,34 +41,59 @@
                 </div>
             </li>
                 {% if app.user %}
-                        {{ app.user }}
-                            <li class="nav-item">
-                                <a class="nav-link" href="/logout">Deconnexion</a>
-                            </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>{{ app.user }} 
+                        <small>{% if user.points %}
+                        ({{user.points}} pts <i class='fas fa-star'></i>)
+                        {% endif %}
+                        </small>
+                        </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#"><i class="fas fa-user-circle mr-2"></i>Mon profil</a>
+                        <a class="dropdown-item" href="/profile/ajout"><i class="fas fa-upload mr-2"></i>Ajouter un bien </a>
+                        <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt mr-2"></i>Se déconnecter</a>
+                        </div>
+                    </li>
                             
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">Connexion</a>
+                                <a class="nav-link" href="/login">Se connecter</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/registration">Inscription</a>
+                                <a class="nav-link" href="/registration">Créer un compte</a>
                             </li>
                         {% endif %}
-          
-            </ul>
-        </div>
-        </nav>
-        <a href="#"> mon profil </a>
-        <a href="profile/ajout">Ajouter un bien</a>
+
+                        </ul>
+                    </div>
+                </nav>
+	
+
+        
     </header>
         {% block body %}{% endblock %}
         {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-{% endblock %}
+        {% endblock %}
     </body>
-    <footer class="bg-light p-2s">
-    myLoc - Lamine - Nadia - Damien
+    <footer class="p-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 text-center my-auto">
+                &copyLamine - &copyNadia - &copyDamien
+                </div>
+                <div class="col-4 text-center my-auto">
+                    <a href="/admin"><img src="{{ asset('assets//img/logo2.png') }}" class="w-50 logo" alt="myloc"></a>
+                </div>
+                <div class="col-4 text-center my-auto">
+                   <span>Aformac 2020</span> 
+                </div>
+            </div>
+        </div>
+    
     </footer>
 </html>

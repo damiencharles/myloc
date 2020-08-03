@@ -1,0 +1,143 @@
+/*
+Couleurs :
+Blanc cassé : #F4F1DE
+Terra : #E07A5F
+Vert : #81B29A
+Sable : #F2CC8F
+Bleu : #3D405B
+*/
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+html {
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    
+    
+}
+
+body {
+    background-color: #F4F1DE;
+    color: #3D405B;
+    font-family: 'Josefin Sans', sans-serif;
+    margin-bottom: 8%
+
+}
+
+
+nav {
+    background-color: #E07A5F;
+    color: #F4F1DE;
+    min-height: 15vh;
+    font-size: 1.3rem;
+}
+
+
+.home {
+   min-height: 85vh;
+    background-color: #F2CC8F;
+}
+.slogan {
+    font-family: 'Pacifico', cursive;
+    text-decoration: bold;
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-family: 'Pacifico', cursive;
+}
+    
+
+.homeImg {
+    background-image: url(../assets/img/homeTest.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+footer {
+    background-color: #3D405B;
+    color: #F4F1DE;
+}
+
+.card-img-top {
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.categorie {
+    position: absolute;
+    top: 67%;
+    left: 67%;
+
+}
+.badge {
+    background-color: #80a191;
+    color: #F4F1DE;
+    font-size: 1rem
+}
+
+
+.card-body, .description {
+    background-color: #f2cc8f8c;
+    
+}
+
+.btn {
+    background-color:#E07A5F;
+    border : none;
+}
+
+.btn:hover {
+    background-color: #80a191 ;
+    border : none;
+}
+
+.nav-link, button a, .lien2 {
+    color : #F4F1DE 
+}
+
+.nav-link:hover{
+    text-decoration: none;
+    color: #3D405B;
+}
+
+.dropdown-menu {
+    background-color:#F4F1DE 
+}
+
+.dropdown-item {
+    color: #3D405B;
+}
+
+.dropdown-item:hover {
+    background-color: #80a19179;
+}
+.dropdown-item:active {
+    background-color: #F4F1DE ;
+    color: #3D405B;
+}
+
+button a:hover, .lien2:hover {
+    color : #F4F1DE;
+    text-decoration: none;
+}
+
+/* LIENS */
+.lien  {
+    color : #E07A5F;;
+}
+
+.lien:hover {
+    text-decoration: none;
+    color: #F2CC8F;
+}
+

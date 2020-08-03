@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("profile/{id}", name="profile")
+     * @Route("profil/{id}", name="profile")
      */
     public function show(int $id)
     {
