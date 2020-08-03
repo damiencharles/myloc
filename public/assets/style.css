@@ -118,8 +118,8 @@ footer {
     color: #3D405B;
 }
 
-.dropdown-item:hover {
-    background-color: #80a19179;
+.dropdown-item:hover, .engagements {
+    background-color: #80a19149;
 }
 .dropdown-item:active {
     background-color: #F4F1DE ;

@@ -58,6 +58,11 @@ class User implements UserInterface
      */
     private $pret_user;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
     public function __construct()
     {
         $this->biens_user = new ArrayCollection();
@@ -195,13 +200,31 @@ class User implements UserInterface
         
     }
 
-    public function getRoles()
-    {
-        return ['ROLE_USER'];
-    }
 
     public function __toString()
     {
         return $this->pseudo;
     }
+
+    public function getRoles(): ?array
+    {
+        if(empty($this->roles)){
+            return ['ROLE_USER'];
+        }
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles[] = $roles;
+
+        return $this;
+    }
+
+    public function addRoles($roles)
+    {
+        $this->roles[] = $roles;
+    }
+    
+
 }

@@ -4,15 +4,19 @@
 
 {% block body %}
 <div class="container">
-<h2 class="text-center"> {{categorie}} : Annonces disponibles</h2>
-<div class="row">
+<h2 class="text-center my-5"> {{categorie}} : Annonces disponibles</h2>
+<div class="row d-flex justify-content-center mb-5">
 
 {% for bien in biens %}
-<div class="col-4">
-{{bien.nomBien}}
-<div><img src="/uploads/{{bien.image}}" alt="" class="img-fluid"> </div>
-{{bien.categorie}}
-<a href="/{{ bien.id }}"> En savoir plus</a>
+<div class="col-4 card-deck">
+<div class="card mb-4" style="width: 18rem;">
+  <img src="/uploads/{{bien.image}}" class="card-img-top" alt="image">
+  <div class="card-body">
+    <h5 class="card-title">{{bien.nomBien}}</h5>
+    <p>proposé par <a href="/profil/" class="lien">{{bien.proprietaire}}</a></p>
+    <button type="button" class="btn btn-dark"><a href="/{{ bien.id }}">En savoir plus</a></button>
+  </div>
+</div>
 </div>
 
 {% endfor %}

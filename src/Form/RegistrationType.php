@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use PhpParser\Node\Expr\Cast\Array_;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,9 @@ class RegistrationType extends AbstractType
             ->add('pseudo')
             ->add('email')
             ->add('password', PasswordType::class)
+            ->add('points')
             ->add("S'inscrire", SubmitType::class)
+
         ;
     }
 
