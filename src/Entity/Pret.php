@@ -18,11 +18,6 @@ class Pret
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Bien::class, inversedBy="pret_bien", cascade={"persist", "remove"})
-     */
-    private $bien_pret;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="pret_user")
      */
     private $user;
@@ -42,21 +37,14 @@ class Pret
      */
     private $points_pret;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Bien::class, inversedBy="pret_bien")
+     */
+    private $bien_pret;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getBienPret(): ?Bien
-    {
-        return $this->bien_pret;
-    }
-
-    public function setBienPret(?Bien $bien_pret): self
-    {
-        $this->bien_pret = $bien_pret;
-
-        return $this;
     }
 
     public function getUser(): ?User
@@ -103,6 +91,18 @@ class Pret
     public function setPointsPret(int $points_pret): self
     {
         $this->points_pret = $points_pret;
+
+        return $this;
+    }
+
+    public function getBienPret(): ?Bien
+    {
+        return $this->bien_pret;
+    }
+
+    public function setBienPret(?Bien $bien_pret): self
+    {
+        $this->bien_pret = $bien_pret;
 
         return $this;
     }

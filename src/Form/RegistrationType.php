@@ -18,7 +18,7 @@ class RegistrationType extends AbstractType
             ->add('pseudo')
             ->add('email')
             ->add('password', PasswordType::class)
-            ->add('points')
+            //->add('points')
             ->add("S'inscrire", SubmitType::class)
 
         ;

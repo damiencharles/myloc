@@ -46,6 +46,7 @@ class PretController extends AbstractController
         $newPret = $form->getData();
         
         $newPret->setPointsPret($pointsResa);
+        $newPret->setUser($user);
         $proprioPoints = $proprio->getPoints();  
         $proprio->setPoints($proprioPoints += $pointsResa); 
     

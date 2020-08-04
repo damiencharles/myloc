@@ -4,25 +4,27 @@
 
 {% block body %}
 <div class="container my-5">
-<h2 class="text-center">Rejoignez nos membres et commencez à échanger</h2>
-<div class="row d-flex justify-content-center mb-5">
-<div class="col-6 my-5">
-{{ form_start(form) }}
-        {{ form_row(form.pseudo, {'label': 'Pseudo', 'attr': {'placeholder':'votre pseudo'}}) }}
-        {{ form_row(form.email, {'attr': {'placeholder':'email@domain.com'}}) }}
-        {{ form_row(form.password, {'label': 'Mot de Passe', 'help' : 'Saisir au moins 5 caractères'}) }}
-        {{ form_end(form) }}
+        <div class="row d-flex justify-content-center mb-5">
+                <h2 class="text-center mb-5">Rejoignez nos membres et commencez à échanger</h2>
+                        <div class="col-6 my-5">
+                                {{ form_start(form) }}
+                                        {{ form_row(form.pseudo, {'label': 'Pseudo', 'attr': {'placeholder':'votre pseudo'}}) }}
+                                        {{ form_row(form.email, {'attr': {'placeholder':'email@domain.com'}}) }}
+                                        {{ form_row(form.password, {'label': 'Mot de Passe'}) }}
+                                        {{ form_end(form) }}
+                        </div>
+
+                        <div class="col-6 my-auto text-center engagements p-3">
+                                <h3 class="text-center mb-5">Nos Engagements</h3>
+                                        <p><i class="far fa-check-circle fa-2x"></i><br>
+                                        Proposer des biens et services de qualité.</p>
+                                        <p class="mt-5"><i class="fas fa-star fa-2x"></i><br>
+                                        Un système de points qui vous récompense.</p>
+                                        <p class="mt-5"><i class="fas fa-coins fa-2x"></i><br>
+                                        Plus vous échangez, plus vous gagnez des points que vous pourrez transformer en bon d'achats.</p>
+                        </div>
+        </div>
 </div>
-<div class="col-6 my-auto text-center engagements p-3">
-<h3 class="text-center mb-5">Nos Engagements</h3>
-<p><i class="far fa-check-circle fa-2x"></i><br>
-Vous proposez des biens et services de qualité.</p>
-<p class="mt-5"><i class="fas fa-star fa-2x"></i><br>
-Un système de points qui vous récompense.</p>
-<p class="mt-5"><i class="fas fa-coins fa-2x"></i><br>
-Plus vous échangez, plus vous gagnez des points que vous pourrez transformer en bon d'achats.</p>
-</div>
-</div></div>
 
 
 

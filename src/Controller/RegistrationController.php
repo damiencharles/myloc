@@ -19,12 +19,13 @@ class RegistrationController extends AbstractController
         $user = new User;
 
         $form = $this->createForm(RegistrationType::class, $user);
-
+        $points = 0;
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
+            $user->setPoints($points);
             $newUser = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($newUser);

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BienRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -52,9 +54,14 @@ class Bien
     private $proprietaire;
 
     /**
-     * @ORM\OneToOne(targetEntity=Pret::class, mappedBy="bien_pret", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Pret::class, mappedBy="bien_pret")
      */
     private $pret_bien;
+
+    public function __construct()
+    {
+        $this->pret_bien = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -126,23 +133,6 @@ class Bien
         return $this;
     }
 
-    public function getPretBien(): ?Pret
-    {
-        return $this->pret_bien;
-    }
-
-    public function setPretBien(?Pret $pret_bien): self
-    {
-        $this->pret_bien = $pret_bien;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newBien_pret = null === $pret_bien ? null : $this;
-        if ($pret_bien->getBienPret() !== $newBien_pret); {
-            $pret_bien->setBienPret($newBien_pret);
-        }
-
-        return $this;
-    }
 
      public function setImageFile(File $image = null)
     {
@@ -160,6 +150,37 @@ class Bien
     public function __toString()
     {
         return $this->nom_bien;
+    }
+
+    /**
+     * @return Collection|Pret[]
+     */
+    public function getPretBien(): Collection
+    {
+        return $this->pret_bien;
+    }
+
+    public function addPretBien(Pret $pretBien): self
+    {
+        if (!$this->pret_bien->contains($pretBien)) {
+            $this->pret_bien[] = $pretBien;
+            $pretBien->setBienPret($this);
+        }
+
+        return $this;
+    }
+
+    public function removePretBien(Pret $pretBien): self
+    {
+        if ($this->pret_bien->contains($pretBien)) {
+            $this->pret_bien->removeElement($pretBien);
+            // set the owning side to null (unless already changed)
+            if ($pretBien->getBienPret() === $this) {
+                $pretBien->setBienPret(null);
+            }
+        }
+
+        return $this;
     }
    
 }

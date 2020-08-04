@@ -50,7 +50,7 @@ nav {
     font-size: 2.5rem;
 }
 
-h2 {
+h2, h1 {
     font-family: 'Pacifico', cursive;
 }
     
@@ -91,6 +91,7 @@ footer {
     
 }
 
+
 .btn {
     background-color:#E07A5F;
     border : none;
@@ -114,7 +115,7 @@ footer {
     background-color:#F4F1DE 
 }
 
-.dropdown-item {
+.dropdown-item, {
     color: #3D405B;
 }
 
@@ -141,3 +142,25 @@ button a:hover, .lien2:hover {
     color: #F2CC8F;
 }
 
+/* FORMS */
+.form-control {
+    background-color: transparent;
+    border: 1px solid #E07A5F;
+    margin-bottom: 5%;
+    width: 90%;
+}
+
+.form-control:focus {
+    background-color: transparent;
+    padding-top: 1%;
+}
+
+label {
+    color: #3D405B;
+}
+
+.pret {
+    position: absolute;
+    top:5%;
+    left: 48%;
+}
