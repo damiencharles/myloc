@@ -30,6 +30,8 @@ class RegistrationController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($newUser);
             $em->flush();
+            $this->addFlash('success', 'Félicitations ! Vous êtes inscrit(e) !');
+            return $this->redirectToRoute('login');
         }
 
         
