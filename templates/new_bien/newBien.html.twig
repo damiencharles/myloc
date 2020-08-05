@@ -3,11 +3,16 @@
 {% block title %}Ajouter un nouveau bien ou service{% endblock %}
 
 {% block body %}
-<div class="container">
-<h1>Ajouter un nouveau bien ou service</h1>
-<div class="row">
-<div class="col-12"> 
-{{form(form)}}   
+<div class="container my-5">
+        <div class="row d-flex justify-content-center mb-5">
+        <h2 class="text-center mb-5">Ajoutez un bien ou un service</h2>
+<div class="col-8 offset-2"> 
+{{ form_start(form) }}
+                {{ form_row(form.nom_bien, {'label': 'Nom du bien ou du service proposé'}) }}
+                {{ form_row(form.description, {'label': 'Description'}) }}
+                {{ form_row(form.categorie, {'label': 'Catégorie'}) }}
+                {{ form_row(form.imageFile, {'label': 'Selectionnez une photo'}) }}
+                {{ form_end(form) }} 
 </div>
 
 </div>

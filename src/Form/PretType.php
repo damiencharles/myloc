@@ -14,7 +14,7 @@ class PretType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('bien_pret')
+            //->add('bien_pret')
             //->add('user')
             ->add('date_debut', DateType::class,
             [

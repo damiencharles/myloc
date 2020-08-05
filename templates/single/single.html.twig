@@ -17,10 +17,16 @@
         </div>
 
         <div class="col-6 d-flex justify-content-center align-items-center flex-column">
-        <p class="description p-2">{{bien.description}}</p>
-        <p class="mt-2"><a href="/profil/{{ proprietaire.id }}" class="lien">Voir le profil de {{bien.proprietaire}}</a></p>
 
-        <a href="profile/bien/{{bien.id}}/pret"><button type="button" class="btn btn-warning my-3">Réserver</button></a>
+            <p class="description p-2">{{bien.description}}</p>
+            <p class="mt-2"><a href="/profil/{{ proprietaire.id }}" class="lien">Voir le profil de {{bien.proprietaire}}</a></p>
+
+                
+                {% if app.user and proprietaire.id == user.id %}
+                <button class='btn btn-secondary my-3' disabled> Reserver</button>
+                {% else %}
+                <button class='btn btn-warning my-3'><a href='profile/bien/{{bien.id}}/pret' >Réserver</a></button>
+                {% endif %}
         </div>
         
 

@@ -21,13 +21,16 @@ class SingleController extends AbstractController
         $categorie = $em->getRepository(Categorie::class)->find($bien->getCategorie());
         $proprietaire = $em->getRepository(User::class)->find($bien->getproprietaire());
         $user = $this->getUser();
+        
+    
+
 
 
         return $this->render('single/single.html.twig', [
             'bien' => $bien,
             'user' => $user,
             'categorie' => $categorie,
-            'proprietaire' => $proprietaire
+            'proprietaire' => $proprietaire,
     
         ]);
     }

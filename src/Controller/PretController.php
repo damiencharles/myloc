@@ -24,9 +24,10 @@ class PretController extends AbstractController
         
 
         $bien = $em->getRepository(Bien::class)->find($id);
-        $proprio = $bien->getproprietaire();
-        //dump($proprio);
+        
 
+        $proprio = $bien->getproprietaire();
+       
         $newPret->setBienPret($bien);
 
         $date = $this->date = new \DateTime('now');
@@ -34,8 +35,6 @@ class PretController extends AbstractController
         $newPret->setDateFin($date);
 
         $pointsResa = '50';
-        
-
         
         $form = $this->createForm(PretType::class, $newPret);
         
@@ -53,6 +52,8 @@ class PretController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($newPret);
         $em->flush();
+        $this->addFlash('success', 'Félicitations ! Votre réservation est validée');
+        return $this->redirectToRoute('index');
 
         }
 

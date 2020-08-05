@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\PretRepository;
+
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PretRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PretRepository::class)
@@ -24,11 +27,13 @@ class Pret
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThanOrEqual("today")
      */
     private $date_debut;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThanOrEqual(propertyPath="dateDebut")
      */
     private $date_fin;
 
@@ -106,6 +111,5 @@ class Pret
 
         return $this;
     }
-
 
 }

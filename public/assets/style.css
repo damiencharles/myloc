@@ -150,9 +150,6 @@ button a:hover, .lien2:hover {
     width: 90%;
 }
 
-#new_bien_imageFile_file {
-    opacity: 1 !important;
-}
 
 .form-control:focus {
     background-color: transparent;

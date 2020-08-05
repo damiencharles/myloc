@@ -26,22 +26,21 @@
     
     {% for biens in biensUser %}
         <div class="col-4 my-3">
-            
+            {% if biens.pretBien %}
             {% for prets in biens.pretBien %}
-
-            {% if prets %}
             
-            {% if date >= prets.dateDebut and date <= prets.dateFin  %}
+            {% if date >= prets.dateDebut or date <= prets.dateFin  %}
             <div class="badge pret"> 
             emprunté par {{prets.user}} <br>
             jusqu'au {{prets.dateFin.format('d/m/Y')}}
             </div>
             {% endif %}
-
+            
             {% else %}
-            {% endif %}
+            
 
             {% endfor %}
+            {% endif %}
             <img src="/uploads/{{biens.image}}" class=" img-thumbnail card-img-top" alt="">
             <div class="mt-2">{{biens.nomBien}}</div>
             <div class="mt-2"><a href="{{ path ('delete', {'id':biens.id}) }}" type="button" class="btn btn-outline-dark">Supprimer</button></a></div>
