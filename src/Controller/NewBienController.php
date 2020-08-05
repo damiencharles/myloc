@@ -31,6 +31,8 @@ class NewBienController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($newBien);
         $em->flush();
+        $this->addFlash('success', 'Votre annonce a été ajoutée');
+        return $this->redirectToRoute('user');
 
         }
 

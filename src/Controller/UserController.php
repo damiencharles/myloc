@@ -33,17 +33,18 @@ class UserController extends AbstractController
      /**
      * @Route("profile/delete/{id}", name="delete")
      * param int $id
+     * @return Response
      */
-    public function delete(Bien $bien)
+    public function delete(Bien $bien):Response
     {
-        dump($bien)
-        /*$em = $this->getDoctrine()->getManager();
+        
+        $em = $this->getDoctrine()->getManager();
         $em->remove($bien);
         
         $em->flush();
 
-        $this->addFlash('delete', 'Annonce supprimée');
+        $this->addFlash('success', 'Annonce supprimée');
 
-        return $this->redirectToRoute('user')*/; 
+        return $this->redirectToRoute('index'); 
     }
 }

@@ -27,8 +27,8 @@
                 Biens
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="/categorie/1">Vêtements</a>
-                <a class="dropdown-item" href="/categorie/3">Décoration</a>
+                <a class="dropdown-item" href="/categorie/6">Vêtements</a>
+                <a class="dropdown-item" href="/categorie/8">Décoration</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -36,8 +36,8 @@
                 Services
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="/categorie/2">Henné</a>
-                <a class="dropdown-item" href="/categorie/4">Traiteur</a>
+                <a class="dropdown-item" href="/categorie/7">Henné</a>
+                <a class="dropdown-item" href="/categorie/9">Traiteur</a>
                 </div>
             </li>
                 {% if app.user %}
@@ -69,11 +69,15 @@
                         </ul>
                     </div>
                 </nav>
-	
-
-        
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-warning w-25">
+                {{ message }}
+            </div>
+        {% endfor %}
     </header>
-        {% block body %}{% endblock %}
+        {% block body %}
+                
+        {% endblock %}
         {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
