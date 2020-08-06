@@ -24,9 +24,13 @@ class PretController extends AbstractController
         
 
         $bien = $em->getRepository(Bien::class)->find($id);
-        
-
         $proprio = $bien->getproprietaire();
+        $prets = $bien->getPretBien();
+
+        foreach ($prets as $pret){
+            $dateDebutPret = $pret->getDateDebut();
+            $dateFinPret= $pret->getDateFin();
+        }
        
         $newPret->setBienPret($bien);
 
@@ -43,24 +47,29 @@ class PretController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
         
         $newPret = $form->getData();
+        dump($newPret);
         
         $newPret->setPointsPret($pointsResa);
         
         $proprioPoints = $proprio->getPoints();  
         $proprio->setPoints($proprioPoints += $pointsResa); 
-    
+            
         $em = $this->getDoctrine()->getManager();
+        
+    
         $em->persist($newPret);
         $em->flush();
         $this->addFlash('success', 'Félicitations ! Votre réservation est validée');
         return $this->redirectToRoute('index');
-
         }
+        
 
         return $this->render('pret/pret.html.twig', [
             'form' => $form->createView(),
             'bien' => $bien,
-            'user' => $user
+            'user' => $user,
+            'dateDebut' => $dateDebutPret,
+            'dateFin' => $dateFinPret
         ]);
     }
 

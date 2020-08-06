@@ -60,14 +60,14 @@
 
 <div class="col-12 my-3">
     <div class="my-3 font-weight-bold">
-    {{prets.bienPret}}
+    <a href="/{{prets.bienPret.id}}" class="lien">{{prets.bienPret}}</a>
     </div>
     <div>
     {% if prets.dateFin.format('d/m/Y') > "now"|date('d/m/Y')%}
-    <span class="badge">Terminé</span>
-    {% endif %}
-    {% if prets.dateFin.format('d/m/Y') <= "now"|date('d/m/Y')%}
     <span class="badge">En cours</span>
+    {% endif %}
+    {% if prets.dateFin.format('d/m/Y') < "now"|date('d/m/Y')%}
+    <span class="badge">Terminé</span>
     {% endif %}
     </div>
     <div class="my-3">

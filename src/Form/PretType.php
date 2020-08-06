@@ -19,7 +19,9 @@ class PretType extends AbstractType
             ->add('date_debut', DateType::class,
             [
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',])
+                'format' => 'yyyy-MM-dd',],
+                )
+
             ->add('date_fin', DateType::class,
             [
                 'widget' => 'single_text',

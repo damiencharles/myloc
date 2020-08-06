@@ -20,7 +20,6 @@
 
             <p class="description p-2">{{bien.description}}</p>
             <p class="mt-2"><a href="/profil/{{ proprietaire.id }}" class="lien">Voir le profil de {{bien.proprietaire}}</a></p>
-
                 
                 {% if app.user and proprietaire.id == user.id %}
                 <button class='btn btn-secondary my-3' disabled> Reserver</button>
@@ -31,7 +30,7 @@
         
 
         <div class='col-12 my-3'>
-        <a href="/"><button type="button" class="btn btn-warning my-2">Retour</button></a>
+        <a href="/" class="btn btn-warning my-2">Retour</a>
         </div>
         
     </div>

@@ -14,12 +14,14 @@ class ProfileController extends AbstractController
     public function show(int $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($id);
-        $biensUser = $user->getBiensUser();
+        $user = $this->getUser();
+        $profil = $em->getRepository(User::class)->find($id);
+        $biensUser = $profil->getBiensUser();
 
         return $this->render('profile/profile.html.twig', [
-            'user' => $user,   
-            'biens' => $biensUser,      
+            'profil' => $profil,   
+            'biens' => $biensUser, 
+            'user' => $user     
         ]);
     }
 }

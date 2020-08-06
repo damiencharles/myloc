@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Bien;
+use App\Entity\Pret;
 use App\Entity\User;
 use App\Entity\Categorie;
 use Symfony\Component\Routing\Annotation\Route;
