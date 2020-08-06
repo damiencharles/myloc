@@ -10,6 +10,9 @@
             <div class='col-6 my-3'>
                 <div><i class="fas fa-user-circle fa-5x mt-2"></i></div>
                 <div class="mt-3">Mon pseudo : {{user.pseudo}}</div>
+                {% if user.points >= 200 %}
+                <div class="mt-3"> Super Prêteur <i class="fas fa-medal"></i></div>
+                {% endif %}
             </div>
 
             <div class='col-6 my-3'>
@@ -29,10 +32,10 @@
             {% if biens.pretBien %}
             {% for prets in biens.pretBien %}
             
-            {% if date >= prets.dateDebut or date <= prets.dateFin  %}
+            {% if "now"|date('d/m/Y') >= prets.dateDebut|date('d/m/Y') or "now"|date('d/m/Y') <= prets.dateFin|date('d/m/Y')  %}
             <div class="badge pret"> 
             emprunté par {{prets.user}} <br>
-            jusqu'au {{prets.dateFin.format('d/m/Y')}}
+            jusqu'au {{prets.dateFin|date('d/m/Y')}}
             </div>
             {% endif %}
             
@@ -60,11 +63,21 @@
     {{prets.bienPret}}
     </div>
     <div>
+    {% if prets.dateFin.format('d/m/Y') > "now"|date('d/m/Y')%}
+    <span class="badge">Terminé</span>
+    {% endif %}
+    {% if prets.dateFin.format('d/m/Y') <= "now"|date('d/m/Y')%}
+    <span class="badge">En cours</span>
+    {% endif %}
+    </div>
+    <div class="my-3">
     Emprunté du 
     {{prets.dateDebut.format('d/m/Y')}}
     au
     {{prets.dateFin.format('d/m/Y')}}
     </div>
+    <hr class="w-25">
+    
 </div>
 
 {% endfor %}

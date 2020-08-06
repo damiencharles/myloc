@@ -33,7 +33,7 @@ class PretController extends AbstractController
         $date = $this->date = new \DateTime('now');
         $newPret->setDateDebut($date);
         $newPret->setDateFin($date);
-
+        $newPret->setUser($user);
         $pointsResa = '50';
         
         $form = $this->createForm(PretType::class, $newPret);
@@ -45,7 +45,7 @@ class PretController extends AbstractController
         $newPret = $form->getData();
         
         $newPret->setPointsPret($pointsResa);
-        $newPret->setUser($user);
+        
         $proprioPoints = $proprio->getPoints();  
         $proprio->setPoints($proprioPoints += $pointsResa); 
     
