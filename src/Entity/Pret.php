@@ -112,4 +112,9 @@ class Pret
         return $this;
     }
 
+    public function isIncluded($date): bool
+    {
+        return $date >= $this->date_debut && $date <= $this->date_fin;
+    }
+
 }

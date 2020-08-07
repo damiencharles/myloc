@@ -27,7 +27,7 @@ class NewBienType extends AbstractType
             ])
             ->add('categorie')
 
-            ->add('Enregistrer', SubmitType::class)
+            ->add('Ajouter', SubmitType::class)
         ;
     }
 

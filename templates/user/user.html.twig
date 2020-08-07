@@ -7,7 +7,7 @@
     <h2 class="text-center my-5">Mon compte</h2>
         <div class="row text-center d-flex justify-content-center align-items-center my-4 description">  
 
-            <div class='col-6 my-3'>
+            <div class='col-sm-12 col-md-6 col-lg-6 my-3'>
                 <div><i class="fas fa-user-circle fa-5x mt-2"></i></div>
                 <div class="mt-3">Mon pseudo : {{user.pseudo}}</div>
                 {% if user.points >= 200 %}
@@ -15,7 +15,7 @@
                 {% endif %}
             </div>
 
-            <div class='col-6 my-3'>
+            <div class='col-sm-12 col-md-6 col-lg-6 my-3'>
                 <div><i class="fas fa-envelope mr-2"></i>Mon email : {{user.email}}</div>
                 <div class="mt-2"><i class="fas fa-star mr-2"></i>Mes points : {{user.points}} points</div>
                 <div class="mt-2"><a class="lien" href="/profile/ajout"><i class="fas fa-upload mr-2"></i>Ajouter un bien </a></div>
@@ -28,7 +28,7 @@
         <div class="row text-center d-flex justify-content-center align-items-center my-4"> 
     
     {% for biens in biensUser %}
-        <div class="col-4 my-3">
+        <div class="col-sm-12 col-md-12 col-lg-4 my-3">
             {% if biens.pretBien %}
             {% for prets in biens.pretBien %}
             
@@ -63,8 +63,9 @@
     <a href="/{{prets.bienPret.id}}" class="lien">{{prets.bienPret}}</a>
     </div>
     <div>
-    {% if prets.dateFin.format('d/m/Y') > "now"|date('d/m/Y')%}
-    <span class="badge">En cours</span>
+
+    {% if prets.dateDebut.format('d/m/Y') > "now"|date('d/m/Y')%}
+    <span class="badge">A venir</span>
     {% endif %}
     {% if prets.dateFin.format('d/m/Y') < "now"|date('d/m/Y')%}
     <span class="badge">Terminé</span>

@@ -7,23 +7,24 @@
 <h2 class="text-center mb-5">Votre réservation</h2>
     <div class="row d-flex justify-content-center mb-5">
         
-            <div class="col-sm-12 col-md-12 col-lg-6 text-center"> 
+            <div class="col-6 text-center"> 
                 <p class"font-weight-bold">   Vous avez choisi de réserver : </p>
                 {{bien.nomBien}}
                 <p>proposé par {{bien.proprietaire}}</p>
-                <div class="media w-50 mt-3 mx-auto">
+                <div class="media w-50 my-3 mx-auto">
                 <img src="/uploads/{{bien.image}}" alt="{{bien.nomBien}}">
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-6 my-auto">
+
+            <div class="col-6 my-auto">
             <p>
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Vérifier les disponibilités
+    Vérifier les réservations en cours
   </button>
 </p>
 <div class="collapse" id="collapseExample">
-  <div class="card card-body my-3">
-{% if bien.pretBien %}
+        <div class="card card-body my-3">
+            {% if bien.pretBien %}
             {% for prets in bien.pretBien %}
             
            <p><i class="far fa-handshake mr-2"></i>emprunté par {{prets.user}} du {{prets.dateDebut|date('d/m/Y')}} au jusqu'au {{prets.dateFin|date('d/m/Y')}}</p> 
@@ -31,16 +32,19 @@
             Aucune réservation programmée
 
             {% endfor %}
-            
-            {% endif %}  </div>
+          
+            {% endif %}  
+            </div>
 </div>
             
             <p class="font-weight-bold mt-5">Indiquez les dates de réservation souhaitées</p>
-            {{ form_start(form) }}
-                {{ form_row(form.date_debut, {'label': 'A partir du', 'attr' : {'data-dates-disabled':'2020-08-06'}}) }}
-                {{ form_row(form.date_fin, {'label': 'Jusqu\'au'}) }}
-                                   
- {{ form_end(form) }}
+            <div class="w-50">
+                {{ form_start(form) }}
+                {{ form_row(form.date_debut, {'label': 'A partir du' }) }}
+                {{ form_row(form.date_fin, {'label': 'Jusqu\'au'}) }}                            
+              {{ form_end(form) }}
+            </div>
+
             </div>
     </div>
 </div>

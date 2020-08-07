@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class PretController extends AbstractController
 {
     /**
@@ -27,10 +28,7 @@ class PretController extends AbstractController
         $proprio = $bien->getproprietaire();
         $prets = $bien->getPretBien();
 
-        foreach ($prets as $pret){
-            $dateDebutPret = $pret->getDateDebut();
-            $dateFinPret= $pret->getDateFin();
-        }
+        
        
         $newPret->setBienPret($bien);
 
@@ -47,8 +45,16 @@ class PretController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
         
         $newPret = $form->getData();
-        dump($newPret);
         
+        foreach ($prets as $pret){
+            if($pret->isIncluded($newPret->getDateDebut()) || $pret->isIncluded($newPret->getDateFin()))
+            {
+            $dateDebutPret = $pret->getDateDebut()->format('d/m/Y');
+            $dateFinPret= $pret->getDateFin()->format('d/m/Y');
+            $this->addFlash('warning', "une réservation est déja en cours du $dateDebutPret au $dateFinPret");
+            return $this->redirectToRoute('pret', ['id'=>$id]);
+            }
+        }
         $newPret->setPointsPret($pointsResa);
         
         $proprioPoints = $proprio->getPoints();  
@@ -61,17 +67,15 @@ class PretController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'Félicitations ! Votre réservation est validée');
         return $this->redirectToRoute('index');
-        }
         
-
+    }
         return $this->render('pret/pret.html.twig', [
             'form' => $form->createView(),
             'bien' => $bien,
             'user' => $user,
-            'dateDebut' => $dateDebutPret,
-            'dateFin' => $dateFinPret
         ]);
-    }
-
     
+
+
+}
 }
